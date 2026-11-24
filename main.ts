@@ -5,5 +5,12 @@ import { mkdirSync, writeFileSync } from "node:fs";
 const LINE =
   "After nine winters of hauling water up the hill, Mara set the full bucket down at her mother's door without spilling a drop, and her mother finally stopped asking if she needed help.";
 
+// The entry is one line: refuse to write anything that is empty or wraps.
+if (LINE.length === 0 || LINE.includes("\n")) {
+  throw new Error("entry must be a single non-empty line");
+}
+
+const OUT = "/output/entry.txt";
+
 mkdirSync("/output", { recursive: true });
-writeFileSync("/output/entry.txt", LINE, "utf8");
+writeFileSync(OUT, LINE, "utf8");
